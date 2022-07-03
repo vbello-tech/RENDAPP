@@ -17,21 +17,11 @@ import django_heroku
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+#BASE_DIR = Path(__file__).resolve().parent.parent
 
 #new base dir
-#BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2^@9tklt7k+6(d^gnllx)n13i_l6kvy!kll6=rn%ovi!4)vv^0'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -51,6 +41,7 @@ INSTALLED_APPS = [
 
     #payment
     'paystack',
+    'gunicorn',
 
     #allauth
     'allauth',
@@ -89,15 +80,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Base.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 # Password validation
@@ -166,9 +149,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PAYSTACK_PUBLIC_KEY='pk_test_feba4156df35513a5957f20e0ad24bdb65d19284'
 PAYSTACK_SECRET_KEY='sk_test_3cce0f21b5a42e885546eec4cead1e5014639129'
 
-EMAIL_HOST = "localhost"
-EMAIL_PORT = 1025
-EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+
 
 LOGIN_URL = "accounts/login"
 
