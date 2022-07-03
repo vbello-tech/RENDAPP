@@ -14,7 +14,6 @@ from django.core.mail import EmailMultiAlternatives
 from django.template import Context
 from django.template.loader import render_to_string, get_template
 from django.contrib import messages
-from pypaystack import Transaction
 from django.http import JsonResponse
 import json
 from django.core.exceptions import ObjectDoesNotExist
