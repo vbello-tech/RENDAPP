@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     #payment
     'paystack',
     'gunicorn',
+    'phonenumber_field',
 
     #allauth
     'allauth',
@@ -151,6 +152,8 @@ PAYSTACK_PUBLIC_KEY='pk_test_feba4156df35513a5957f20e0ad24bdb65d19284'
 PAYSTACK_SECRET_KEY='sk_test_3cce0f21b5a42e885546eec4cead1e5014639129'
 
 
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'NG'
 
 LOGIN_URL = "accounts/login"
 

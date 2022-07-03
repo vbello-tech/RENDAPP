@@ -4,6 +4,8 @@ from services.models import Service
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.exceptions import ObjectDoesNotExist
+from phonenumber_field.modelfields import PhoneNumberField
+from django.core.validators import RegexValidator
 
 # Create your models here.
 
@@ -43,7 +45,8 @@ class OrderCompletedServices(models.Model):
 class UserProfile(models.Model):
     person = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="profile", on_delete=models.CASCADE,  blank=True, null=True)
     profile_pic = models.ImageField(blank=True, upload_to="Profile/")
-    state = models.CharField(max_length=15, blank=True, null=True)
+    phone_number = PhoneNumberField(blank=True, null=True)
+    state = models.CharField(max_length=15, blank=True, null=True, validators=[RegexValidator(r'^\d{4}-\d{3}-\d{4}$')])
     city = models.CharField(max_length=30, blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
     is_a_provider = models.BooleanField(default=False, blank=True, null=True)
