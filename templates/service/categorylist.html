@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1>{{ category_name }}</h1>
+
+
+{% for cat in categories %}
+        <img src="{{ cat.category_image.url }}"  class="img-fluid" alt="Image" height="375" width="400">
+            <h4>{{ cat.category }}</h4>
+        <span><a href="{% url 'service:category' category=cat.category %}">{{ cat.category }}</a></span>
+{% endfor %}
+
+{% endblock body %}

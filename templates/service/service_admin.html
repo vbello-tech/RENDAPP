@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    {% for order in orders %}
+
+ <div class="search">
+                <div class="search-image">
+                    <img src="{{ order.order_service.image.url }}" alt="no image"/>
+                </div>
+
+                <div class="service-details">
+                    <h3>{{ order.order_service.name }}</h3>
+                    <h3>{{ order.user }}</h3>
+                    <p>
+                        {{ order.order_service.service_state }}
+                    </p>
+                    <a href="{% url 'service:accept' pk=order.pk %}">
+    Accept
+</a>
+<a href="{% url 'service:decline' pk=order.pk %}">
+    decline
+</a>
+ <a href="{% url 'service:paystack' pk=order.pk %}">
+    paystack payment
+</a>
+                </div>
+            </div>
+
+{% endfor %}
+
+{% endblock body %}

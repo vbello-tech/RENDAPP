@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block body %}
+        <img src="{{ service.img.url }}" class="img-fluid" alt="Image">
+      <h2>MENU: {{ service.name }}</h2>
+      <h2>DESCRIPTION: {{ service.desc }}</h2>
+      <h2>PRICE: ${{ service.price }}</h2>
+        <a href="{% url 'service:call-service' pk=service.pk %}">Call Service</a>
+
+{% endblock body %}

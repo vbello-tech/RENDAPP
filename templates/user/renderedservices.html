@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    {% for order in orders %}
+
+ <div class="search">
+                <div class="search-image">
+                    <img src="{{ order.ordered_service.image.url }}" alt="no image"/>
+                </div>
+
+                <div class="service-details">
+                    <h3>{{ order.ordered_service.name }}</h3>
+                    <p>
+                        {{ order.service_ordered_date }}
+                    </p>
+                    <p>
+                        {{ order.ref_code }}
+                    </p>
+                    <a href="{% url 'service:admin-confirm' pk=order.pk %}">
+                        admin confirm
+                    </a>
+                </div>
+            </div>
+
+{% endfor %}
+
+{% endblock body %}

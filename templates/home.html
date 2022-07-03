@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <link rel="stylesheet" href="{% static 'styling/style.css' %}"/>
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}"/>
+        <meta charset="UTF-8">
+        <title>RENDAPP</title>
+        <link rel="shortcut icon" href="{% static 'images/rendapp2.jpg' %}" type="image/x-icon">
+    </head>
+    <body>
+        <!-- Start NAV -->
+        <header>
+            <div class="logo">
+                <img src="{% static 'images/rendapp 1.jpg' %}" alt="no image"/>
+            </div>
+            <div class="links">
+                <ul>
+                    <li>
+                        <a href="#">HOME</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'service:search' %}">FIND SERVICE</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'service:serviceadmin' %}">NOTIFICATIONS</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'service:about' %}">ABOUT </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'service:contact' %}">CONTACT</a>
+                    </li>
+                </ul>
+                 {% if user.is_authenticated %}
+                    <div class="user">
+                        <a href="{% url 'account_logout' %}">LOGOUT</a>
+                    </div>
+                {% else %}
+                 <div class="user">
+                        <a href="{% url 'account_login' %}">LOGIN</a>
+                    </div>
+                {% endif %}
+                
+            </div>
+        </header>
+        <!-- End NAV -->
+
+        <!--WELCOME SECTION-->
+        <div class="welcome">
+            <div class="welcome-speech">
+                <div class="welcome-intro">
+                    <h1>FIND LOCAL SERVICE PROVIDERS EASILY</h1>
+                    <p>Rendapp helps you find local service providers and artisans in your area simply and in lesser time.</p>
+                <a href="{% url 'account_signup' %}">
+                    <h3>GET STARTED</h3>
+                  </a>
+               </div>
+            </div>
+            <div class="welcome-image">
+                <img src="{% static 'images/im1.jpg' %}" alt="no image"/>
+            </div>
+        </div>
+
+        <div id="space"></div>
+        <!--SOME SERVICES-->
+        <center><h1>SERVICES</h1></center>
+
+        <div class="category">
+
+        <div class="container">
+            <div class="row">
+                {% for category in category %}
+                <div class="col-xs-6 col-md-4">
+                    <div class="box">
+                        <img src="{{ category.category_image.url }}" alt="">
+                        <div class="service-box">
+                            <a href="{% url 'service:category' category.category %}">
+                                {{ category.name }}
+                              </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+
+        </div>
+        <div class="spread">
+            <a href="{% url 'service:categorylist'  %}">
+                View All SERVICE
+            </a>'
+            <a href="{% url 'service:search' %}">
+                SEARCH A SERVICE
+            </a>
+
+        </div>
+            </div>
+
+
+
+        <!--WHY US SECTION-->
+        <div class="why-us">
+            <center><h1>WHY US</h1></center>
+            <div class="main">
+                <!--REASON 1-->
+                <div class="sub">
+                        <h1>1 <img src="{% static 'images/f1.png' %}" alt="no image"/></h1>
+                        <p>
+                            Such an implementation is sufficient for simple use-cases. But with more variables that we may want to filter, 
+                            it can quickly become a mess that is difficult to manage. There must be a better way of handling this, right. 
+                        </p>
+                </div>
+                <!--REASON 2-->
+                <div class="sub">
+                        <h1>2 <img src="{% static 'images/f2.png' %}" alt="no image"/></h1>
+                        <p>
+                            Such an implementation is sufficient for simple use-cases. But with more variables that we may want to filter, 
+                            it can quickly become a mess that is difficult to manage. There must be a better way of handling this, right. 
+                        </p>
+                </div>
+            </div>
+
+            <div class="main">
+                <!--REASON 3-->
+                <div class="sub">
+                        <h1>3 <img src="{% static 'images/f3.png' %}" alt="no image"/></h1>
+                        <p>
+                            Such an implementation is sufficient for simple use-cases. But with more variables that we may want to filter, 
+                            it can quickly become a mess that is difficult to manage. There must be a better way of handling this, right. 
+                        </p>
+                </div>
+                <!--REASON 4-->
+                <div class="sub">
+                        <h1>4 <img src="{% static 'images/f4.png' %}" alt="no image"/></h1>
+                        <p>
+                            Such an implementation is sufficient for simple use-cases. But with more variables that we may want to filter, 
+                            it can quickly become a mess that is difficult to manage. There must be a better way of handling this, right. 
+                        </p>
+                </div>
+            </div>
+        </div>
+
+        <!--PROVIDERS BENEFIT-->
+        
+       <!--CUSTOMER-->
+       <center><h1>CUSTOMER REVIEWS</h1></center>
+       <div class="customer">
+           <h2>CUSTOMERS NAME</h2>
+           <img src="{% static 'images/profile-1.jpg' %}" alt="no image"/>
+           <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. 
+                Mauris magna metus, dapibus nec turpis vel, 
+                semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.
+           </p>
+           <a href="#">fashioln design services</a>
+       </div>
+       <div class="customer">
+           <h2>CUSTOMERS NAME</h2>
+           <img src="{% static 'images/profile-3.jpg' %}" alt="no image"/>
+           <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui.
+                Mauris magna metus, dapibus nec turpis vel,
+                semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.
+           </p>
+           <a href="#">fashioln design services</a>
+       </div>
+        <div class="customer">
+           <h2>CUSTOMERS NAME</h2>
+           <img src="{% static 'images/profile-7.jpg' %}" alt="no image"/>
+           <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui.
+                Mauris magna metus, dapibus nec turpis vel,
+                semper malesuada ante. Idac bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.
+           </p>
+           <a href="#">fashioln design services</a>
+       </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+
+    </body>
+</html>

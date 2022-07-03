@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+    {% if searched %}
+        <center>
+        <h1>YOU SEARCHED FOR {{ searched }}</h1>2
+        </center>
+        {% if result %}
+            {% for service in result %}
+            <div class="search">
+                <div class="search-image">
+                    <img src="{{ service.image.url }}" alt="no image"/>
+                </div>
+
+                <div class="service-details">
+                    <h3>{{ service.name }}</h3>
+                    <p>
+                        {{ service.service_state }}
+                    </p>
+                    <a href="{% url 'service:call-service' pk=service.pk %}">
+                        ORDER
+                    </a>
+                    <a href="{% url 'service:detail' pk=service.pk %}">
+                        VIEW
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            no value for {{ searched }}
+        {% endif %}
+    {% endif %}
+
+{% endblock body %}

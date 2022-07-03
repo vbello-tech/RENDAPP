@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% for service in services %}
+<h1><a href="{% url 'service:detail' pk=service.pk %}">{{ service.name }}</a></h1>
+
+<a href="{% url 'service:call-service' pk=service.pk %}">Call Service</a>
+<br>
+{% endfor %}
+
+{% endblock body %}
