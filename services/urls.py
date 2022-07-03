@@ -17,7 +17,6 @@ urlpatterns = [
     path('decline-service-call/<int:pk>/', decline_service_call, name="decline"),
     path('user-service-complete-confirmation/<int:pk>/', service_user_confirmation, name="user-confirm"),
     path('service_admin-service-completion-confirmation/<int:pk>/', service_admin_confirmation, name="admin-confirm"),
-    path('service/stripe-payment/<int:pk>/', StripeView.as_view(), name="stripe"),
     path('service/payment/paystack/<int:pk>/', PaystackView.as_view(), name="paystack"),
     path('paystack-payment-verified/<str:ref>/<int:pk>/', PaymentView.as_view(), name="paystackverify"),
     path('services/search/', SearchView.as_view(), name="search"),

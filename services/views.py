@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from .models import *
 from .forms import *
 from django.utils import timezone
-import random, string, stripe
+import random, string
 from django.conf import settings
 from users.models import *
 from django.core.mail import EmailMessage
@@ -20,9 +20,6 @@ import json
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 
-
-
-stripe.api_key = settings.STRIPE_SECRET_KEY
 paystack_key = settings.PAYSTACK_PUBLIC_KEY
 
 #EMAILS TO SEND TO CUSTOMERS AND USERS
@@ -141,7 +138,7 @@ def call_service(request, pk):
             ordered=True,
             ref_code=create_ref_code()
         )
-        order_email(request, pk)
+        #order_email(request, pk)
         return redirect('service:detail', pk =called_service.pk)
 
 class ServiceAdminView(View, LoginRequiredMixin):
@@ -232,43 +229,6 @@ def service_admin_confirmation(request, pk, ref):
         )
         return redirect('service:home')
 
-class StripeView(View):
-    def get(self, request, pk, *args, **kwargs):
-        order = OrderService.objects.get(
-            user=self.request.user, 
-            ordered=True,
-            pk=pk,
-            active=True,
-        )
-        context = {
-            'order': order,
-        }
-        return render(self.request, 'service/stripe.html', context)
-
-    def post(self, request, pk, *args, **kwargs):
-        order = OrderService.objects.get(
-            user=self.request.user,
-            ordered=True,
-            pk=pk,
-            active=True,
-        )
-        amount = int(order.final_price() * 100)
-        token = self.request.POST.get('stripeToken') # Using Flask
-        description = str(f"{order.user} paying for  {order.order_service_admin} {order.order_service}service")
-        print(token)
-        customer =stripe.Customer.create(
-            name=request.user,
-            description=description,
-            source=token,
-        )
-        charge = stripe.Charge.create(
-            amount=amount,
-            currency="usd",
-            description=description,
-            customer=customer,
-            source=token,
-        )
-        redirect("food:food_list")
 
 class PaystackView(View):
     def get(self, request, pk, *args, **kwargs):
@@ -291,22 +251,13 @@ class PaystackView(View):
 
 class PaymentView(View):
     def get(self, *args, **kwargs):
-        transaction = Transaction(authorization_key = 'sk_test_3cce0f21b5a42e885546eec4cead1e5014639129')
-        response = transaction.verify(kwargs['reference'])
-        data = JsonResponse(response, safe=False)
+        try:
+            order = OrderService.objects.get(user=self.request.user, ordered=True, pk=pk, ref_code=ref)
 
-        if response[3]:
-
-            try:
-                order = OrderService.objects.get(user=self.request.user, ordered=True, pk=pk, ref_code=ref)
-
-                #messages.success(self.request, "order was successful")
-                return redirect("/")
-            except ObjectDoesNotExist:
-                #messages.success(self.request, "Your order was successful")
-                return redirect("/")
-        else:
-            #messages.danger(self.request, "Could not verify the transaction")
+            #messages.success(self.request, "order was successful")
+            return redirect("/")
+        except ObjectDoesNotExist:
+            #messages.success(self.request, "Your order was successful")
             return redirect("/")
 
 
@@ -349,11 +300,11 @@ class ContactView(View):
             NAME = form.cleaned_data.get('NAME')
 
             print(EMAIL, NAME, MESSAGE )
-            send_mail(
-                NAME,
-                MESSAGE,
-                'from@example.com',
-                [EMAIL],
-                fail_silently=False,
-            )
+            #send_mail(
+             #   NAME,
+            #    MESSAGE,
+             #   'from@example.com',
+            #    [EMAIL],
+             #   fail_silently=False,
+            #)
             return redirect('service:home')
