@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
-from .paystack import Paystack
 from django.shortcuts import reverse
 # Create your models here.
 
@@ -10,6 +9,12 @@ SERVICE_CHOICES = (
     ('HARD SERVICE', 'HARD SERVICE'),
 )
 
+CATEGORY_CHOICES = (
+    ('DRY CLEANING', 'DRY CLEANING'),
+    ('SALON', 'SALON'),
+    ('CARPENTARY AND WOOD WORK', 'CARPENTARY AND WOOD WORK')
+)
+"""
 class Category(models.Model):
     category = models.CharField(max_length=200)
     name = models.CharField(max_length=20, blank=True, null=True)
@@ -22,7 +27,7 @@ cat = Category.objects.all().values_list('category', 'category')
 CATEGORY_CHOICES = []
 for choice in cat:
     CATEGORY_CHOICES.append(choice)
-
+"""
 class Service(models.Model):
     admin = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=300)
