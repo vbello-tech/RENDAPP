@@ -48,13 +48,13 @@ def servicedetail(request, pk):
     }
     return render(request, 'service/servicedetail.html', context)
 
-class CategoryListView(ListView):
-    model = Category
-    context_object_name = "categories"
-    template_name = "service/categorylist.html"
+#class CategoryListView(ListView):
+#    model = Category
+#    context_object_name = "categories"
+#    template_name = "service/categorylist.html"
 
-    def get_queryset(self):
-        return Category.objects.all()
+ #   def get_queryset(self):
+ #       return Category.objects.all()
 
 def category(request, category):
     categories = Service.objects.filter(category=category)
