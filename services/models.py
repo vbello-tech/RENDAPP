@@ -14,7 +14,7 @@ CATEGORY_CHOICES = (
     ('SALON', 'SALON'),
     ('CARPENTARY AND WOOD WORK', 'CARPENTARY AND WOOD WORK')
 )
-"""
+
 class Category(models.Model):
     category = models.CharField(max_length=200)
     name = models.CharField(max_length=20, blank=True, null=True)
@@ -22,7 +22,7 @@ class Category(models.Model):
 
     def __str_(self):
         return self.category
-
+"""
 cat = Category.objects.all().values_list('category', 'category')
 CATEGORY_CHOICES = []
 for choice in cat:
