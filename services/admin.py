@@ -5,5 +5,5 @@ from .models import *
 
 admin.site.register(Service)
 admin.site.register(OrderService)
-admin.site.register(Category)
+#admin.site.register(Category)
 
