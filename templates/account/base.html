@@ -1,11 +1,18 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
   <head>
     <title>{% block head_title %}{% endblock %}</title>
     {% block extra_head %}
     {% endblock %}
+     <link rel="stylesheet" href="{% static 'styling/style.css' %}"/>
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}"/>
+        <meta charset="UTF-8">
+        <title>RENDAPP</title>
+        <link rel="shortcut icon" href="{% static 'images/rendapp2.jpg' %}" type="image/x-icon">
   </head>
   <body>
+  {% include 'nav.html' %}
     {% block body %}
 
     {% if messages %}
