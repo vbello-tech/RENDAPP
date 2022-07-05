@@ -1,0 +1,36 @@
+{% load static %}
+<!-- Start NAV -->
+        <header>
+            <div class="logo">
+                 <img src="{% static 'images/rendapp 1.jpg' %}" alt="no image"/>
+            </div>
+            <div class="links">
+                <ul>
+                    <li>
+                        <a href="{% url 'service:home' %}">HOME</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'service:search' %}">FIND SERVICE</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'service:serviceadmin' %}">NOTIFICATIONS</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'service:about' %}">ABOUT </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'service:contact' %}">CONTACT</a>
+                    </li>
+                </ul>
+                 {% if user.is_authenticated %}
+                    <div class="user">
+                        <a href="{% url 'account_logout' %}">LOGOUT</a>
+                    </div>
+                {% else %}
+                 <div class="user">
+                        <a href="{% url 'account_login' %}">LOGIN</a>
+                    </div>
+                {% endif %}
+            </div>
+        </header>
+        <!-- End NAV -->
