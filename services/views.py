@@ -35,7 +35,7 @@ def order_email(request, pk):
 
 class HomeView(View):
     def get(self, * args, **kwargs):
-
+        category = Category.objects.all()[:8]
         context = {
             'category': category,
         }
