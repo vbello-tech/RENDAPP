@@ -45,9 +45,9 @@ INSTALLED_APPS = [
     'phonenumber_field',
 
     #allauth
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    #'allauth',
+    #'allauth.account',
+    #'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -103,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+"""
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -113,7 +113,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
-
+"""
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -154,7 +154,7 @@ PAYSTACK_SECRET_KEY='sk_test_3cce0f21b5a42e885546eec4cead1e5014639129'
 
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
 PHONENUMBER_DEFAULT_REGION = 'NG'
-
+"""
 LOGIN_URL = "accounts/login"
 
 LOGIN_REDIRECT_URL = "service:home"
@@ -162,6 +162,6 @@ LOGIN_REDIRECT_URL = "service:home"
 LOGOUT_REDIRECT_URL = "service:home"
 
 PASSWORD_RESET_TIMEOUT = 360
-
+"""
 
 django_heroku.settings(locals())
