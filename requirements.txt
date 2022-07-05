@@ -15,7 +15,6 @@ django-restframework==0.0.1
 gunicorn==20.1.0
 idna==3.3
 oauthlib==3.2.0
-paystack==1.5.0
 phonenumberslite==8.12.51
 Pillow==9.1.0
 psycopg2==2.9.3

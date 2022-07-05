@@ -24,6 +24,4 @@ urlpatterns = [
     path('', include('services.urls', namespace="service")),
     path('user/', include('users.urls', namespace="user")),
     path('accounts/', include('allauth.urls')),
-    #path('paystack/', include('paystack.urls',namespace='paystack')),
-    #path('pay-with-paystack/', include(('paystack.urls', 'paystack'), namespace='paystack')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

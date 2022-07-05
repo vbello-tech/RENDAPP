@@ -63,40 +63,9 @@
         </div>
 
         <div id="space"></div>
-        <!--SOME SERVICES-->
-        <center><h1>SERVICES</h1></center>
-
-        <div class="category">
-        <div class="container">
-            <div class="row">
-                {% for category in category %}
-                <div class="col-xs-6 col-md-4">
-                    <div class="box">
-                        <img src="{{ category.category_image.url }}" alt="">
-                        <div class="service-box">
-                            <a href="{% url 'service:category' category.category %}">
-                                {{ category.name }}
-                              </a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
 
 
-        </div>
-        <div class="spread">
-            <a href="{% url 'service:categorylist'  %}">
-                View All SERVICE
-            </a>'
-            <a href="{% url 'service:search' %}">
-                SEARCH A SERVICE
-            </a>
-
-        </div>
-        </div>
-
-
+<h4>SOMETHING HERE</h4>
 
         <!--WHY US SECTION-->
         <div class="why-us">

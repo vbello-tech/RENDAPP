@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     #'django.contrib.sites',
 
     #payment
-    'paystack',
     'gunicorn',
     'phonenumber_field',
 
