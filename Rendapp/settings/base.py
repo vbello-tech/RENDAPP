@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     #third party
     'cloudinary_storage',
     'cloudinary',
+    'gunicorn',
 
     # allauth
     'allauth',
