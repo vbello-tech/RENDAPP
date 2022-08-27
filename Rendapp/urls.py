@@ -22,6 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('', include('Service.urls', namespace="service")),
+    path('user/', include('Users.urls', namespace="user")),
 ]
 
 handler404 = 'Users.views.handler404'

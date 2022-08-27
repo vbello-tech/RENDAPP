@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} CONTACT US {% endblock title %}
+{% block body %}
+
+ <div id="dsp"></div>
+<br><br>
+
+     <form method="POST" class="form-group">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="submit-button text-center">
+            <button class="btn btn-common" id="submit" type="submit">CREATE</button>
+            <div id="msgSubmit" class="h3 text-center hidden"></div>
+            <div class="clearfix"></div>
+        </div>
+    </form>
+<div id="dsp"></div>
+{% endblock body %}

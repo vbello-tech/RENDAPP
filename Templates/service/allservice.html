@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} ALL SERVICES {% endblock title %}
+
+{% block body %}
+
+<div id="dsp"></div>
+
+<!--service list-->
+{% for service in services %}
+<div class="search">
+    <div class="search-image">
+        <img src="{{ service.image.url }}" alt="no image"/>
+    </div>
+
+    <div class="service-details">
+        <h3>{{ service.name }}</h3>
+        <p>
+            <a href="{{ service.get_category }}">
+                {{ service.category }}
+            </a>
+        </p>
+        <p>
+            We specialise in giving you the best electrical works you can find anywhere.
+        </p>
+
+        <div class="spread">
+            <a href="{{ service.call_service }}">
+                ORDER
+            </a>
+            <a href="{{ service.get_detail }}">
+                VIEW
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endfor %}
+<!--end service list-->
+
+{% endblock body %}

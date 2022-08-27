@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {% endblock title %}
+{% block body %}
+
+ <div id="dsp"></div>
+<center><b><h2>SHOWING RESULT FOR {{ searched_service }} in {{ searched_state }}</h2></b></center>
+<br>
+{% if result %}
+    <!--service list-->
+    {% for service in result %}
+    <div class="search">
+        <div class="search-image">
+            <img src="{{ service.image.url }}" alt="no image"/>
+        </div>
+
+        <div class="service-details">
+            <h3>{{ service.name }}</h3>
+            <p>
+                <a href="{{ service.get_category }}">
+                    {{ service.category }}
+                </a>
+            </p>
+            <p>
+                We specialise in giving you the best electrical works you can find anywhere.
+            </p>
+
+            <div class="spread">
+                <a href="{{ service.call_service }}">
+                    ORDER
+                </a>
+                <a href="{{ service.get_detail }}">
+                    VIEW
+                </a>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+    <!--end service list-->
+{% else %}
+<br>
+<center><b><h2>NO RESULT FOR {{ searched_service }} in {{ searched_state }}</h2></b></center>
+<center><b><h4>NO  {{ searched_service }} in {{ searched_state }} has registered to use our product. We would really appreciate it if you can tell one about our amazing platform when you find him/her</h4></b></center>
+{% endif %}
+ <div id="dsp"></div>
+
+{% endblock body %}

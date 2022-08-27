@@ -1,0 +1,33 @@
+{% load static %}
+
+
+<!--footer-->
+
+<footer>
+    <div class="f_about">
+        <h3>RENDAPP</h3>
+        <p>Our focus is to help you find service providers and artisans in your area faster.
+            As a provider you have the opportunity of meeting new and more clients.
+        </p>
+    </div>
+    <div class="f_service">
+        <h3>SERVICES</h3>
+        <ul>
+            <li><a href="#">FASHION DESIGN</a></li>
+            <li><a href="#">PLUMBING</a></li>
+            <li><a href="#">CARPENTARY</a></li>
+            <li><a href="#">AUTOMOBILE</a></li>
+        </ul>
+    </div>
+    <div class="f_contact">
+        <h3>CONTACT</h3>
+        <ul>
+            <li><a href="#">123 New Design Str, ABC Building, melbourne, Australia.</a></li>
+            <li><a href="#">(000) 8647 1234 587</a></li>
+            <li><a href="#">hello@yourdomain.com</a></li>
+            <li><a href="{% url 'service:contact' %}">SEND US A MESSAGE</a></li>
+         </ul>
+    </div>
+</footer>
+
+<!--end footer-->

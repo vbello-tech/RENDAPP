@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} RENDAPP{% endblock title %}
+
+{% block body %}
+
+ <!--WELCOME-->
+        <div class="welcome">
+            <div class="welcome-speech">
+                <div class="welcome-intro">
+                    <h1>FIND LOCAL SERVICE PROVIDERS AND ARTISANS</h1>
+                    <p>Rendapp helps you find and connect with local service providers and artisans in your area simply and in lesser time.</p>
+                    <a href="{% url 'account_signup' %}">
+                        <h3>GET STARTED</h3>
+                    </a>
+               </div>
+            </div>
+            <div class="welcome-image">
+                <img src="{% static 'images/im1.jpg' %}" alt="no image"/>
+            </div>
+        </div>
+        <!--END WELCOME-->
+
+
+<!--SOME SERVICES-->
+<div class="category">
+    <h1>SERVICES</h1>
+    <div class="container">
+        <div class="row">
+            {% for service in categories %}
+            <div class="col-xs-6 col-md-4">
+                <div class="box">
+                    <img src="{{ service.category_image.url }}" alt="">
+                    <div class="service-box">
+                        <a href="{% url 'service:category' category=service.category %}">
+                            {{ service.category }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="spread">
+        <a href="{% url 'service:categorylist'  %}">
+            View All SERVICE
+        </a>'
+        <a href="{% url 'service:search' %}">
+            SEARCH A SERVICE
+        </a>
+
+    </div>
+</div>
+<!--END SOME SERVICE-->
+
+ <!--WHY US SECTION-->
+        <div class="why-us">
+            <center><h1>WHY US</h1></center>
+            <div class="main">
+                <!--REASON 1-->
+                <div class="sub">
+                        <img src="{% static 'images/f1.png' %}" alt="no image"/>
+                        <p>
+                            ease of accessobolity to service providers in your area.
+                        </p>
+                </div>
+                <!--REASON 2-->
+                <div class="sub">
+                         <img src="{% static 'images/f2.png' %}" alt="no image"/>
+                        <p>
+                            quick accesibility to people in need of services in your area
+                        </p>
+                </div>
+            </div>
+
+        </div>
+        <!--END WHY US-->
+
+{% endblock body %}

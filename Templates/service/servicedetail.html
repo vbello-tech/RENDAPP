@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ service.name }}{% endblock title %}
+
+{% block body %}
+
+ <br><br><br>
+    <div class="detail">
+        <div class="image">
+          <img src="{{ service.image.url }}" alt="" class="img-rounded">
+        </div>
+        <div class="box">
+            <span>{{ service.name }}</span>
+            <br>
+            <p>
+                DESCRIPTION of what a service does and the deatils of everything it can do for you as stipikated by the admin of such said service
+            </p>
+            <a href="{{ service.call_service }}">ORDER SERVICE</a>
+        </div>
+    </div>
+
+<!--RELATED SERVICES-->
+
+<div class="related">
+    <h1>RELATED SERVICES</h1>
+    <div class="container">
+        <div class="row">
+            {% for service in related_list %}
+            <div class="col-sm-6 col-xl-3">
+                <div class="related_box">
+                    <img src="{{ service.image.url }}" alt="">
+                    <div class="related_service">
+                        <a href="{{ service.get_detail }}">
+                        {{ service.name }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

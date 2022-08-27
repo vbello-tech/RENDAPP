@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} SEARCH A SERVICE {% endblock title %}
+{% block body %}
+
+ <div id="dsp"></div>
+
+<form action="{% url 'service:searchresult' %}" method="POST" style="margin-top:50px;">
+    {% csrf_token %}
+    <div class="form-group">
+    <h5>SERVICE:</h5>
+
+            <input type="text" class="form-control" id="service" name="service" placeholder="Enter a service to search" required data-error="Please enter your name">
+            <div class="help-block with-errors"></div>
+        </div>
+
+    <div class="form-group">
+        <h5>RESULT WILL APPEAR BASED ON THE STATE AND CITY YOU INPUT BELOW</h5>
+    <h5>STATE:</h5>
+
+            <input type="text" placeholder="Enter A state." id="state" class="form-control" name="state" required data-error="Please enter a state">
+            <div class="help-block with-errors"></div>
+        </div>
+    <div class="form-group">
+        <h5>CITY:</h5>
+
+            <input type="text" placeholder="Enter a City" id="city" class="form-control" name="city" required data-error="Please enter a city">
+            <div class="help-block with-errors"></div>
+        </div>
+
+    <div class="form-group">
+        <div class="submit-button text-center">
+            <button class="btn btn-common" id="submit" type="submit">SEARCH</button>
+        </div>
+    </div>
+
+</form>
+
+ <div id="dsp"></div>
+
+{% endblock body %}

@@ -82,7 +82,7 @@ ROOT_URLCONF = 'Rendapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'Templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -142,10 +142,32 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    #os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'Static'),
+)
+
+
+# MEDIA FILES
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+#allauth settings
+
+LOGIN_URL = "account_login"
+LOGOUT_URL = "account_logout"
+LOGIN_REDIRECT_URL = "service:home"
+LOGOUT_REDIRECT_URL = "service:home"
+PASSWORD_RESET_TIMEOUT = 360
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

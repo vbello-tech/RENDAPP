@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} ALL CATEGORIES {% endblock title %}
+
+{% block body %}
+
+
+    <div id="dsp"></div>
+
+    <section class="shop_section layout_padding">
+        <div class="container">
+            <div class="heading_container heading_center">
+                <h2>
+                  Latest Watches
+                </h2>
+          </div>
+          <div class="row">
+              {% for cat in categories %}
+            <div class="col-sm-6 col-xl-3">
+              <div class="box">
+                <a href="{% url 'service:category' category=cat.category %}">
+                  <div class="img-box">
+                    <img src="{{ cat.category_image.url }}" alt="">
+                  </div>
+                  <div class="detail-box">
+                   <span>
+                       {{ cat.category }}
+                   </span>
+                  </div>
+                </a>
+              </div>
+            </div>
+              {% endfor %}
+          </div>
+
+        </div>
+      </section>
+
+{% endblock body %}
