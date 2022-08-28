@@ -25,6 +25,10 @@ body {
         position: fixed;
     }
 
+    .navbar {
+        width: 90%;
+      }
+
     .nav-menu {
         display: grid;
         grid-template-columns: auto;
@@ -394,6 +398,10 @@ body {
         border-radius: 10px 10px;
         object-fit: contain;
         object-position: center;
+    }
+        
+    .form-group {
+        margin: 0 40px 0 40px;
     }
 
 }

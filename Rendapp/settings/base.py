@@ -55,16 +55,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     #third party
     'cloudinary_storage',
     'cloudinary',
     'gunicorn',
+    'crispy_forms',
 
     # allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'bootstrapform',
 ]
 
 MIDDLEWARE = [
@@ -90,6 +93,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -160,7 +164,7 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
+CRISPY_TEMPLATE_PACK ="bootstrap4"
 #allauth settings
 
 LOGIN_URL = "account_login"
