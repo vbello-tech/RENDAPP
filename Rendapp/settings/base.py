@@ -61,7 +61,6 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'gunicorn',
-    'crispy_forms',
 
     # allauth
     'allauth',
@@ -164,7 +163,7 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-CRISPY_TEMPLATE_PACK ="bootstrap4"
+
 #allauth settings
 
 LOGIN_URL = "account_login"
