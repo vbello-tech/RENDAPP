@@ -12,10 +12,17 @@ class Category(models.Model):
     def __str_(self):
         return self.category
 
+"""
 cat = Category.objects.all().values_list('category', 'category')
 CATEGORY_CHOICES = []
 for choice in cat:
     CATEGORY_CHOICES.append(choice)
+"""
+CATEGORY_CHOICES = (
+    ('DRY CLEANING', 'DRY CLEANING'),
+    ('SALON', 'SALON'),
+    ('CARPENTARY AND WOOD WORK', 'CARPENTARY AND WOOD WORK')
+)
 
 class Service(models.Model):
     admin = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
