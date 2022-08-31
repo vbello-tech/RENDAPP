@@ -39,6 +39,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'rendappservices.herokuapp.com',
+    'web-production-77ce.up.railway.app/'
 ]
 
 
