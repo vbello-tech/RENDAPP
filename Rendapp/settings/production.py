@@ -24,10 +24,10 @@ DATABASES = {
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # new
-DEFAULT_FROM_EMAIL = 'vbellotech@gmail.com'
-EMAIL_HOST = 'in-v3.mailjet.com' # new
-EMAIL_HOST_USER = '8c2d3b7759f49b463ebd62dbd415a380' # api_key
-EMAIL_HOST_PASSWORD = '4eWGK5rVNpq5JU@' # mailjet password
+#DEFAULT_FROM_EMAIL = 'vbellotech@gmail.com'
+EMAIL_HOST = 'smtp.mailjet.com' # new
+EMAIL_HOST_USER = 'in-v3.mailjet.com'
+EMAIL_HOST_PASSWORD = '8c2d3b7759f49b463ebd62dbd415a380' # api_key
 EMAIL_PORT = 587 # new
 EMAIL_USE_TLS = True # new
 
