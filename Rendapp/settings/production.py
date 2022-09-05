@@ -29,7 +29,7 @@ EMAIL_HOST = 'in-v3.mailjet.com' # new
 EMAIL_HOST_USER = '8c2d3b7759f49b463ebd62dbd415a380' # api_key
 EMAIL_HOST_PASSWORD = '4eWGK5rVNpq5JU@' # mailjet password
 EMAIL_PORT = 587 # new
-#EMAIL_USE_TLS = True # new
+EMAIL_USE_TLS = True # new
 
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
