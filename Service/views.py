@@ -7,22 +7,35 @@ from .models import *
 from .forms import *
 from django.utils import timezone
 import random, string
-from django.conf import settings
+from Rendapp.settings import base
 from Users.models import *
-from django.core.mail import EmailMessage
-from django.core.mail import EmailMultiAlternatives
-from django.template import Context
-from django.template.loader import render_to_string, get_template
 from django.contrib import messages
 from django.http import JsonResponse
 import json
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.mail import send_mail
+from twilio.rest import Client
 # Create your views here.
 
+tw_sid = base.account_sid
+tw_token = base.auth_token
+tw_num = base.my_number
 
 def create_ref_code():
     return ''.join(random.choices(string.ascii_lowercase + string.digits, k=20))
+
+
+def send_sms(request, called_service):
+    sender = UserProfile.objects.get(person =called_service.admin)
+    account_sid = tw_sid
+    auth_token = tw_token
+    client = Client(account_sid, auth_token)
+
+    message = client.messages.create(
+        body=f"Hi {called_service} admin, you have a new service order on rendapp. Kindly accept the order if you are interested ",
+        from_=tw_num,
+        to= sender.phone_number
+    )
+    print(body)
 
 class HomeView(View):
     def get(self, * args, **kwargs):
@@ -114,7 +127,7 @@ def call_service(request, pk):
             ordered=True,
             ref_code=create_ref_code()
         )
-        #order_email(request, pk)
+        send_sms(request, called_service)
         return redirect(called_service.get_detail())
 
 

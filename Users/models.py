@@ -4,8 +4,8 @@ from Service.models import Service
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.exceptions import ObjectDoesNotExist
-#from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import RegexValidator
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 
@@ -35,14 +35,14 @@ class CompletedOrderedServices(models.Model):
 class UserProfile(models.Model):
     person = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="profile", on_delete=models.CASCADE,  blank=True, null=True)
     profile_pic = models.ImageField(blank=True, upload_to="Profile/")
-    #phone_number = PhoneNumberField(blank=True, null=True)
-    state = models.CharField(max_length=30)
-    city = models.CharField(max_length=30)
-    address = models.CharField(max_length=100)
+    phone_number = PhoneNumberField(blank=True, null=True)
+    state = models.CharField(max_length=30, blank=True, null=True)
+    city = models.CharField(max_length=30, blank=True, null=True)
+    address = models.CharField(max_length=100, blank=True, null=True)
     is_a_provider = models.BooleanField(default=False, blank=True, null=True)
 
     def __str__(self):
-        return self.person
+        return self.person.username
 
 Identity_CHOICES = (
     ('NIN', 'NIN'),

@@ -7,7 +7,7 @@ class ProfileForm(forms.ModelForm):
         model = UserProfile
         fields = (
             'profile_pic',
-            # phone_number = PhoneNumberField(blank=True, null=True)
+            'phone_number',
             'state',
             'city',
             'address',
