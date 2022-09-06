@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'gunicorn',
+    'anymail',
 
     # allauth
     'allauth',
