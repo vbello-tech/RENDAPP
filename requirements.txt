@@ -8,6 +8,7 @@ defusedxml==0.7.1
 dj-database-url==1.0.0
 Django==4.1
 django-allauth==0.51.0
+django-anymail==8.6
 django-bootstrap-form==3.4
 django-cloudinary-storage==0.3.0
 django-crispy==1.8.1
