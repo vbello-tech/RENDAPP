@@ -28,8 +28,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #MAILJET
 EMAIL_BACKEND = "anymail.backends.mailjet.EmailBackend"
 ANYMAIL = {
-    "MAILJET_API_KEY": '48',
-    "MAILJET_SECRET_KEY": '345',
+    "MAILJET_API_KEY": '8c2d3b7759f49b463ebd62dbd415a380',
+    "MAILJET_SECRET_KEY": '158c6fbdb8ccf038f6bfe1b55df84b16',
 }
 DEFAULT_FROM_EMAIL = 'vbellotech@gmail.com'
 
