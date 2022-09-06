@@ -232,7 +232,7 @@ class ContactView(View):
                 NAME,
                 MESSAGE,
                 EMAIL,
-                ['from@example.com'],
+                ['vbellotech@gmail.com'],
                 fail_silently=False,
             )
             return redirect('service:home')
