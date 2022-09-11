@@ -26,6 +26,7 @@ def create_ref_code():
 
 def send_sms(request, called_service):
     sender = UserProfile.objects.get(person =called_service.admin)
+    sennum = sender.phone_number
     account_sid = tw_sid
     auth_token = tw_token
     client = Client(account_sid, auth_token)
@@ -33,7 +34,7 @@ def send_sms(request, called_service):
     message = client.messages.create(
         body=f"Hi {called_service} admin, you have a new service order on rendapp. Kindly accept the order if you are interested ",
         from_=tw_num,
-        to= sender.phone_number
+        to= sennum
     )
     print(body)
 
