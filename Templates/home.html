@@ -54,26 +54,59 @@
 <!--END SOME SERVICE-->
 
  <!--WHY US SECTION-->
-        <div class="why-us">
-            <center><h1>WHY US</h1></center>
-            <div class="main">
-                <!--REASON 1-->
-                <div class="sub">
-                        <img src="{% static 'images/f1.png' %}" alt="no image"/>
-                        <p>
-                            ease of accessobolity to service providers in your area.
-                        </p>
-                </div>
-                <!--REASON 2-->
-                <div class="sub">
-                         <img src="{% static 'images/f2.png' %}" alt="no image"/>
-                        <p>
-                            quick accesibility to people in need of services in your area
-                        </p>
+        
+    <div class="container">
+        
+        <section>
+            <h1 class="text-center">WHY US</h1>
+            <div class="reason">
+                <img src="{% static 'images/CV_Builder_2x.png' %}">
+                <div class="text">
+                    <h2>EASY TO USE</h2>
+                    <p>
+                        Our builder is well structured to give you ease while building your resume in lesser time.
+                    </p>
                 </div>
             </div>
-
-        </div>
+            <div class="reason">
+                <img src="{% static 'images/Export_PDF_2x.png' %}">
+                <div class="text">
+                    <h2>CONVERT TO PDF</h2>
+                    <p>
+                        Convert and download your resume in pdf format to aplly for jobs.
+                    </p>
+                </div>
+            </div>
+            <div class="reason">
+                
+                <img src="{% static 'images/Resources_2x.png' %}">
+                <div class="text">
+                    <h2>MULTIPLE RESUME</h2>
+                    <p>
+                        Create multiple instances of the same resume for multiple roles and interview.
+                    </p>
+                </div>
+            </div>
+            <div class="reason">
+                <img src="{% static 'images/share-2x.png' %}">
+                <div class="text">
+                    <h2>SHARE </h2>
+                    <p>
+                        Generate resume link that you can share via email or through social media to land that tech role.
+                    </p> 
+                </div>
+            </div>
+        </section>
+    </div>
         <!--END WHY US-->
+
+        
+<div class="build">
+    WHY WAIT? GET CONNECTED FROM THE COMFORT OF WHEREEVER YOU ARE.
+    <br><br>
+    <a href="{% url 'account_signup' %}">
+        SIGN UP
+    </a>
+</div>
 
 {% endblock body %}

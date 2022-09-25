@@ -3,13 +3,6 @@ from .base import *
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 """
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-"""
 
 DATABASES = {
    'default': {
@@ -21,6 +14,15 @@ DATABASES = {
        'PORT': '5585',
    }
 }
+
+"""
+
+DATABASES = {
+    'default':  dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+}
+
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -53,5 +55,8 @@ CSRF_COOKIE_SECURE = True
 
 SECURE_BROWSER_XSS_FILTER = True
 
+
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'].update(db_from_env)
 
 

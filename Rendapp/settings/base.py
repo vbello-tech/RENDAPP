@@ -64,12 +64,13 @@ INSTALLED_APPS = [
     'gunicorn',
     'anymail',
     'phonenumber_field',
+    'crispy_forms',
 
     # allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'bootstrapform',
+    #'bootstrapform',
 ]
 
 MIDDLEWARE = [
@@ -160,6 +161,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'Static'),
 )
 
+CRISPY_TEMPLATE_PACK ="bootstrap4"
 
 # MEDIA FILES
 MEDIA_URL = '/media/'
