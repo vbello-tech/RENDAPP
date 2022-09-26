@@ -675,4 +675,28 @@ footer .f_contact ul li{
 }
 
 
+.how-it-works {
+    align-items: center;
+    margin: 20px 70px 20px 50px;
+}
+
+.how-it-works .sub{
+    height: 50vh;
+    display: flex;
+    margin-bottom: 20vh;
+}
+
+.how-it-works img{
+    width: 50%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.how-it-works p{
+    padding: 70px 0;
+    width: 50%;
+    font-size: 18px;
+}
+
    

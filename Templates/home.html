@@ -60,39 +60,49 @@
         <section>
             <h1 class="text-center">WHY US</h1>
             <div class="reason">
-                <img src="{% static 'images/CV_Builder_2x.png' %}">
+                <img src="{% static 'images/callum-hill-oamw52SCGi0-unsplash.jpg' %}">
                 <div class="text">
-                    <h2>EASY TO USE</h2>
+                    <h2>ORDER SERVICES</h2>
                     <p>
-                        Our builder is well structured to give you ease while building your resume in lesser time.
+                        Order and get services done and completed from the comfort of where ever you are.
                     </p>
                 </div>
             </div>
             <div class="reason">
-                <img src="{% static 'images/Export_PDF_2x.png' %}">
+                <img src="{% static 'images/istockphoto-1180187740-612x612.jpg' %}">
                 <div class="text">
-                    <h2>CONVERT TO PDF</h2>
+                    <h2>CONNECTION</h2>
                     <p>
-                        Convert and download your resume in pdf format to aplly for jobs.
+                        Tap into the pool of service providers and artisans we bring to you.
                     </p>
                 </div>
             </div>
             <div class="reason">
                 
-                <img src="{% static 'images/Resources_2x.png' %}">
+                <img src="{% static 'images/kenny-eliason-60krlMMeWxU-unsplash.jpg' %}">
                 <div class="text">
-                    <h2>MULTIPLE RESUME</h2>
+                    <h2>VARIETY OF PROVIDERS</h2>
                     <p>
-                        Create multiple instances of the same resume for multiple roles and interview.
+                        You are not limited to home service providers alone but to all types of service providers
                     </p>
                 </div>
             </div>
             <div class="reason">
-                <img src="{% static 'images/share-2x.png' %}">
+                <img src="{% static 'images/blake-wisz-q3o_8MteFM0-unsplash.jpg' %}">
                 <div class="text">
-                    <h2>SHARE </h2>
+                    <h2>ACCOUNTABILITY</h2>
                     <p>
-                        Generate resume link that you can share via email or through social media to land that tech role.
+                        Our application is built to enable both the provider and the user both get what they want through a 
+                        <b>pay-before-service-activation</b> for users and <b>recieve-payment-after-service-completion</b> for providers system
+                    </p> 
+                </div>
+            </div>
+            <div class="reason">
+                <img src="{% static 'images/maarten-van-den-heuvel-KSQgzzn3dW0-unsplash.jpg' %}">
+                <div class="text">
+                    <h2>STREAMLINED SEARCH</h2>
+                    <p>
+                        Your search is streamlined to get the providers that are closest and readily available locally to you.
                     </p> 
                 </div>
             </div>
@@ -102,11 +112,69 @@
 
         
 <div class="build">
-    WHY WAIT? GET CONNECTED FROM THE COMFORT OF WHEREEVER YOU ARE.
+    WHY WAIT? GET CONNECTED FROM THE COMFORT OF WHEREEVER YOU ARE TODAY.
     <br><br>
     <a href="{% url 'account_signup' %}">
         SIGN UP
     </a>
 </div>
+
+<!--HOW IT WORKS-->
+<div class="how-it-works">
+    <center><h1>HOW IT WORKS</h1></center>
+    <br>
+    <div class="main">
+        <!--REASON 1-->
+        <div class="sub">
+                <img src="{% static 'images/f1.png' %}" alt="no image"/>
+                <p>
+                    SIGN UP AND COMPLETE YOUR PROFILE WITH THE NECESSARY DETAILS. DONT FORGET TO READ AND ACCEPT OUR TERMS AND CONDITIONS FIRST
+                </p>
+        </div>
+        <!--REASON 2-->
+        <div class="sub">
+                <img src="{% static 'images/f2.png' %}" alt="no image"/>
+                <p>
+                    CREATE A SERVICE AND COMPLETE YOUR SERVICE ADMIN PROFILE. A ONE TIME PROCESS THAT ENABLES YOU TO HAVE AS MANY SERVICE PAGE AS YOU WANT.
+                    YOUR REQUEST WILL BE REVIEWED AND SERVICE ACTIVATED.
+                </p>
+        </div>
+        <!--REASON 3-->
+        <div class="sub">
+                <img src="{% static 'images/f3.png' %}" alt="no image"/>
+                <p>
+                    PROCEED TO THE SEARCH PAGE TO SEARCH ANY TYPE OF SERVICE YOU WANT. YOU CAN ORDER OR VIEW TO KNOW MORE ABOUT EACH SERVICE.
+                    PROVIDERS WILL RECEIVE NOTIFICATIONS ABOUT A NEW SERVICE ORDER BASED OFF THE CHIOCE IN THEIR PROFILE
+                </p>
+        </div>
+        <!--REASON 4-->
+        <div class="sub">
+                <img src="{% static 'images/f4.png' %}" alt="no image"/>
+                <p>
+                     PAY THE SERVICE CHARGE TO ACTIVATE SERVICE WHICH WILL LEAD TO A SERVICE ACTIVE NOTIFICATION BEING SENT TO PROVIDERS.
+                     BOTH PROVIDER AND USERS SHOUKD THEN CLICK SERVICE COMPLETED IN ORDER TO BOTH RECIEVE A SERVICE CLOSED NOTIFICATION AFTER WHICH THE SERVICE CHARGE WILL BE PAID THE PROVIDER WITHIN 24 HOURS.
+                </p>
+        </div>
+        <!--REASON 5-->
+        <div class="sub">
+                <img src="{% static 'images/f4.png' %}" alt="no image"/>
+                <p>
+                    DONT FORGET TO RATE WHOM YOU ARE SATISFIED WITH TO HELP THEM APPEAR MORE FREQUENTLY IN SERVICE SEARCH.
+                </p>
+        </div>
+    </div>
+</div>
+<!--HOW IT WORKS-->
+
+
+       
+<div class="build">
+    SIGN IN TODAY AND GET THAT BROKEN TAP  FIXED.
+    <br><br>
+    <a href="{% url 'account_signup' %}">
+        SIGN UP
+    </a>
+</div>
+
 
 {% endblock body %}
