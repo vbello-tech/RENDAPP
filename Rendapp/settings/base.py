@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
-#import django_heroku
+import django_heroku
 import dj_database_url
 import dotenv
 import cloudinary_storage
@@ -196,4 +196,4 @@ my_number = '+12569608957'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#django_heroku.settings(locals())
+django_heroku.settings(locals())
