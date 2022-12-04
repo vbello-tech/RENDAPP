@@ -1,7 +1,7 @@
 asgiref==3.5.2
 certifi==2022.6.15
 cffi==1.15.1
-charset-normalizer==3.0.1
+charset-normalizer==3.0.0
 cloudinary==1.29.0
 cryptography==37.0.4
 defusedxml==0.7.1
