@@ -2,7 +2,7 @@ from .base import *
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-"""
+
 
 DATABASES = {
    'default': {
@@ -22,7 +22,7 @@ DATABASES = {
         default=config('DATABASE_URL')
     )
 }
-
+"""
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
