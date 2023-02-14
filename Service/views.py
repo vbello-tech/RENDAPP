@@ -14,6 +14,7 @@ from django.http import JsonResponse
 import json
 from django.core.exceptions import ObjectDoesNotExist
 from twilio.rest import Client
+from django.core.mail import send_mail
 # Create your views here.
 
 tw_sid = base.account_sid

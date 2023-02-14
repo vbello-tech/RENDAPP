@@ -25,7 +25,7 @@ DATABASES = {
 """
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 #MAILJET
 EMAIL_BACKEND = "anymail.backends.mailjet.EmailBackend"

@@ -178,8 +178,8 @@ LOGOUT_REDIRECT_URL = "service:home"
 PASSWORD_RESET_TIMEOUT = 360
 
 #MAILJET
-#api_key = '8c2d3b7759f49b463ebd62dbd415a380'
-#api_secret = '158c6fbdb8ccf038f6bfe1b55df84b16'
+#api_key = '#'
+#api_secret = '#'
 
 #phonefield
 PHONENUMBER_DB_FORMAT = 'E164'
@@ -187,9 +187,9 @@ PHONENUMBER_DEFAULT_FORMAT = 'E164'
 PHONENUMBER_DEFAULT_REGION = 'NG'
 
 #twillo
-account_sid ='AC23849fa343cecdf442418f438b786a68'
-auth_token = '0422860d2dd68b964788ef24ab12eda8'
-my_number = '+12569608957'
+account_sid = config('account_sid')
+auth_token = config('auth_token')
+my_number = config('my_number')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
