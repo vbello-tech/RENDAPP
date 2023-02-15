@@ -177,9 +177,14 @@ LOGIN_REDIRECT_URL = "service:home"
 LOGOUT_REDIRECT_URL = "service:home"
 PASSWORD_RESET_TIMEOUT = 360
 
-#MAILJET
-#api_key = '#'
-#api_secret = '#'
+
+ANYMAIL = {
+    "MAILJET_API_KEY": '8c2d3b7759f49b463ebd62dbd415a380',
+    "MAILJET_SECRET_KEY": '158c6fbdb8ccf038f6bfe1b55df84b16',
+}
+EMAIL_BACKEND = "anymail.backends.mailjet.EmailBackend"
+DEFAULT_FROM_EMAIL = 'vbellotech@gmail.com'
+SERVER_EMAIL = 'vbellotech@gmail.com'
 
 #phonefield
 PHONENUMBER_DB_FORMAT = 'E164'
