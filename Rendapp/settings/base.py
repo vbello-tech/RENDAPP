@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
-import django_heroku
 import dj_database_url
 import dotenv
 import cloudinary_storage
@@ -196,9 +195,13 @@ account_sid = config('account_sid')
 auth_token = config('auth_token')
 my_number = config('my_number')
 
+#abstract api location
+api_key = "e6f28958036544acb71d7325038cb2ae"
+api_url = 'https://ipgeolocation.abstractapi.com/v1/?api_key=' + api_key
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-django_heroku.settings(locals())
+

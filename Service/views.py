@@ -6,26 +6,29 @@ from django.urls import reverse_lazy
 from .models import *
 from .forms import *
 from django.utils import timezone
-import random, string
+import random, string, requests, json
 from Rendapp.settings import base
 from Users.models import *
 from django.contrib import messages
 from django.http import JsonResponse
-import json
 from django.core.exceptions import ObjectDoesNotExist
 from twilio.rest import Client
 from django.core.mail import send_mail
+from django.http import HttpResponse
 # Create your views here.
 
 tw_sid = base.account_sid
 tw_token = base.auth_token
 tw_num = base.my_number
 
+
+
+
 def create_ref_code():
     return ''.join(random.choices(string.ascii_lowercase + string.digits, k=20))
 
 
-def send_sms(request, called_service):
+def order_sms(request, called_service):
     sender = UserProfile.objects.get(person =called_service.admin)
     sennum = sender.phone_number
     phone = str(sennum)
@@ -34,11 +37,38 @@ def send_sms(request, called_service):
     client = Client(account_sid, auth_token)
 
     message = client.messages.create(
-        body=f"Hi {called_service} admin, you have a new service order on rendapp. Kindly accept the order if you are interested ",
+        body=f"Hi {called_service.name} admin, You have a new service order for your {called_service.category} service on rendapp. Kindly accept the order if you are interested ",
         from_='+12569608957',
         to= phone
     )
-    print(sennum)
+
+def admin_confirm_sms(request, called_service):
+    sender = UserProfile.objects.get(person =called_service.user)
+    sennum = sender.phone_number
+    phone = str(sennum)
+    account_sid = tw_sid
+    auth_token = tw_token
+    client = Client(account_sid, auth_token)
+
+    message = client.messages.create(
+        body=f"Hi {called_service.order_service} admin, Your client has sucessfully closed the service you rendered with code {called_service.ref_code}. Kindly close this service from your end to receive your payment within the next 24 hours",
+        from_='+12569608957',
+        to= phone
+    )
+
+def client_confirm_sms(request, called_service):
+    sender = UserProfile.objects.get(person =called_service.order_service.admin)
+    sennum = sender.phone_number
+    phone = str(sennum)
+    account_sid = tw_sid
+    auth_token = tw_token
+    client = Client(account_sid, auth_token)
+
+    message = client.messages.create(
+        body=f"Hi {request.user}, A provider has sucessfully closed the service you ordered with code {called_service.ref_code}. Kindly close this service from your end to enable your payment to provider within the next 24 hours",
+        from_='+12569608957',
+        to= phone
+    )
 
 class HomeView(View):
     def get(self, * args, **kwargs):
@@ -120,6 +150,7 @@ def call_service(request, pk):
         ordered=True
     )
     if order_qs.exists():
+        messages.info(request, f"YOU HAVE AN ACTIVE SERVICE ORDER WITH {called_service.name}")
         return redirect(called_service.get_detail())
     else:
         # create a service order if it doesnt exist
@@ -130,7 +161,8 @@ def call_service(request, pk):
             ordered=True,
             ref_code=create_ref_code()
         )
-        send_sms(request, called_service)
+        order_sms(request, called_service)
+        messages.info(request, f"YOU ORDERED {called_service.name} SERVICE")
         return redirect(called_service.get_detail())
 
 
@@ -145,6 +177,7 @@ def accept_service_call(request, pk):
     if logged_in_user == ordered_service.order_service.admin:
         ordered_service.accept_call_order()
         ordered_service.save()
+        messages.info(request, f"YOU ACCEPTED A NEW SERVICE ORDER. IT WILL BE ADDED TO YOUR ACTIVE  SERVICES ")
         return redirect('service:home')
 
 @login_required
@@ -158,6 +191,7 @@ def decline_service_call(request, pk):
     if logged_in_user == ordered_service.order_service.admin:
         ordered_service.decline_call_order()
         ordered_service.save()
+        messages.info(request, f"YOU DECLINED A SERVICE ORDER ")
         return redirect('service:home')
 
 @login_required
@@ -173,13 +207,9 @@ def service_user_confirmation(request, pk, ref):
     if logged_in_user == ordered_service.user:
         ordered_service.service_user_confirmation()
         ordered_service.save()
-        service, created = OrderCompletedServices.objects.get_or_create(
-            user=logged_in_user,
-            ordered_service=ordered_service.order_service,
-            service_ordered_date=ordered_service.order_service_date,
-            completed=ordered_service.completed,
-            ref_code=ordered_service.ref_code,
-        )
+        # todo, send a message to the provider that client has checked out the service
+        admin_confirm_sms(ordered_service)
+        messages.info(request, f"YOU HAVE SUCESSFULLY CLOSED {ordered_service.name} SERVICE. THE PROVIDER WILL BE NOTIFIED")
         return redirect('service:home')
 
 @login_required
@@ -202,6 +232,9 @@ def service_admin_confirmation(request, pk, ref):
             completed = ordered_service.completed,
             ref_code = ordered_service.ref_code,
         )
+        # todo, send a message to the client that provider has checked out the service
+        client_confirm_sms(ordered_service)
+        messages.info(request, f"YOU HAVE SUCESSFULLY CLOSED {ordered_service.name} SERVICE. YOUR CLIENT WOULD BE NOTIFIED WILL BE NOTIFIED")
         return redirect('service:home')
 
 

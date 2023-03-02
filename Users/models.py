@@ -16,20 +16,13 @@ SERVICE_CHOICES = (
 
 
 class RenderedServices(models.Model):
-    admin = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    admin = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="redendered_BY",  on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="redendered_to", blank=True, null=True, on_delete=models.CASCADE)
     ordered_service = models.ForeignKey(Service, on_delete=models.CASCADE)
     service_ordered_date = models.DateTimeField(auto_now_add=True)
     completed = models.BooleanField(default=False)
     ref_code = models.CharField(max_length=20)
 
-class CompletedOrderedServices(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    admin = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="redendered_by", blank=True, null=True, on_delete=models.CASCADE)
-    ordered_service = models.ForeignKey(Service, on_delete=models.CASCADE)
-    service_ordered_date = models.DateTimeField(auto_now_add=True)
-    completed = models.BooleanField(default=False)
-    ref_code = models.CharField(max_length=20)
 
 # details of all users
 class UserProfile(models.Model):

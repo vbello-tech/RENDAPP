@@ -5,6 +5,7 @@ from .models import *
 from Service.models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from Service.models import OrderService
 
 # Create your views here.
 
@@ -21,7 +22,7 @@ class AdminRenderedView(View, LoginRequiredMixin):
 
 class UserCompletedView(View, LoginRequiredMixin):
     def get(self, *args, **kwargs):
-        orders = OrderCompletedServices.objects.filter(
+        orders = OrderService.objects.filter(
             user=self.request.user,
             completed = True,
         )
