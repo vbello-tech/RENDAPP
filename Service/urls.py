@@ -19,5 +19,4 @@ urlpatterns = [
     path('services/search/result/', search_result, name="searchresult"),
     path('rendapp/about/', AboutView.as_view(), name="about"),
     path('rendapp/CONTACT/', ContactView.as_view(), name="contact"),
-    path('location/', location, name="location"),
 ]
