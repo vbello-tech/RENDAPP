@@ -680,9 +680,10 @@ footer .f_contact ul li{
 }
 
 .how-it-works .sub{
-    height: 50vh;
+    height: 20vh;
     display: flex;
-    margin-bottom: 20vh;
+    margin-bottom: 8vh;
+    justify-content: space-around;
 }
 
 .how-it-works img{
@@ -693,7 +694,7 @@ footer .f_contact ul li{
 }
 
 .how-it-works p{
-    padding: 70px 0;
+    padding: 30px 0;
     width: 50%;
     font-size: 18px;
 }
