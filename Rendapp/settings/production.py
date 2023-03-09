@@ -31,10 +31,14 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
+CLOUD_NAME = config('CLOUD_NAME')
+API_KEY = config('API_KEY')
+API_SECRET = config('API_SECRET')
+
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dhzn9oqey',
-    'API_KEY': '894294618768234',
-    'API_SECRET': '8fqL8OfZKqSJChXcObtsRWqefPQ'
+    'CLOUD_NAME': CLOUD_NAME,
+    'API_KEY': API_KEY,
+    'API_SECRET': API_SECRET,
 }
 
 #SECURE_SSL_REDIRECT = True
