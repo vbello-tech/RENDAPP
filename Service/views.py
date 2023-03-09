@@ -157,6 +157,7 @@ def call_service(request, pk):
         order_service, created = OrderService.objects.get_or_create(
             order_service=called_service,
             user=request.user,
+            admin = called_service.admin,
             order_service_date=timezone.now(),
             ordered=True,
             ref_code=create_ref_code()
@@ -227,14 +228,18 @@ def service_admin_confirmation(request, pk, ref):
         ordered_service.save()
         service, created = RenderedServices.objects.get_or_create(
             admin = logged_in_user,
+            user = ordered_service.user,
             ordered_service = ordered_service.order_service,
             service_ordered_date = ordered_service.order_service_date,
             completed = ordered_service.completed,
             ref_code = ordered_service.ref_code,
         )
         # todo, send a message to the client that provider has checked out the service
-        client_confirm_sms(ordered_service)
-        messages.info(request, f"YOU HAVE SUCESSFULLY CLOSED {ordered_service.name} SERVICE. YOUR CLIENT WOULD BE NOTIFIED WILL BE NOTIFIED")
+        if ordered_service.completed:
+            messages.info(request, f"YOU HAVE SUCESSFULLY CLOSED {ordered_service.name} SERVICE.")
+        else:
+            client_confirm_sms(ordered_service)
+            messages.info(request, f"YOU HAVE SUCESSFULLY CLOSED {ordered_service.name} SERVICE. YOUR CLIENT WILL BE NOTIFIED")
         return redirect('service:home')
 
 

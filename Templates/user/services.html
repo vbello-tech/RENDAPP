@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if rendered %}
+<div class="data_table">
+                <h3>YOUR RENDERED SERVICES</h3>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>SERVICE</th>
+                        <th>USER</th>
+                        <th>COMPLETED DATE</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in rendered %}
+                        <tr>
+                            <td>{{ item.order_service }}</td>
+                            <td>{{ item.user.username }}</td>
+                            <td> {{ item.confirmation_date }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+{% endif %}
+
+{% if ordered %}
+<div class="data_table">
+                <h3>YOUR ORDERED SERVICES</h3>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>SERVICE</th>
+                        <th>PROVIDER</th>
+                        <th>COMPLETED DATE</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in ordered %}
+                        <tr>
+                            <td>{{ item.order_service }}</td>
+                            <td>{{ item.admin.username }}</td>
+                            <td> {{ item.confirmation_date }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+{% endif %}
+
+{% if user_actv %}
+<div class="data_table">
+                <h3>ACTIVE SERVICES (services that you haven't checked out)</h3>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>SERVICE</th>
+                        <th>ADMIN</th>
+                        <th>ORDERED DATE</th>
+                        <th>PAYMENT</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in user_actv %}
+                        <tr>
+                            <td>{{ item.order_service }}</td>
+                            <td>{{ item.admin.username }}</td>
+                            <td> {{ item.order_service_date }}</td>
+                            <td>PAID</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+{% endif %}
+
+
+{% if admin_actv %}
+<div class="data_table">
+                <h3>ACTIVE SERVICES (services that you haven't checked out)</h3>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>SERVICE</th>
+                        <th>USER</th>
+                        <th>ORDERED DATE</th>
+                        <th>PAYMENT</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in admin_actv %}
+                        <tr>
+                            <td>{{ item.order_service }}</td>
+                            <td>{{ item.user.username }}</td>
+                            <td> {{ item.order_service_date }}</td>
+                            <td>PAID</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+{% endif %}
+
+{% endblock body %}

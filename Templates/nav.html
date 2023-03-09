@@ -3,7 +3,7 @@
 <!--nav-->
     <div class="nav-container">
         <nav class="navbar">
-            <h1 id="navbar-logo">RENDAPP</h1>
+            <h1 id="navbar-logo"><a href="{% url 'service:about' %}" class="nav-links">RENDAPP</a></h1>
             <div class="menu-togle" id="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -13,9 +13,9 @@
                 <li><a href="{% url 'service:home' %}" class="nav-links">Home</a></li>
                 <li><a href="{% url 'service:allservice' %}" class="nav-links">Services</a></li>
                 <li><a href="{% url 'service:search' %}" class="nav-links">SEARCH</a></li>
-                <li><a href="{% url 'service:about' %}" class="nav-links">About Us</a></li>
+                <li><a href="{% url 'service:addservice' %}" class="nav-links">ADD SERVICE</a></li>
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'account_logout' %}" class="nav-links nav-links-btn">LOGOUT</a></li>
+                <li><a href="{% url 'user:profile' %}" class="nav-links nav-links-btn">DASHBOARD</a></li>
                 {% else %}
                 <li><a href="{% url 'account_login' %}" class="nav-links nav-links-btn">LOGIN</a></li>
 

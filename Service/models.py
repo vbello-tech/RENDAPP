@@ -60,6 +60,7 @@ class Service(models.Model):
 
 class OrderService(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    admin = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="service_admin", blank=True, null=True, on_delete=models.CASCADE)
     order_service = models.ForeignKey(Service, on_delete=models.CASCADE)
     order_service_date = models.DateTimeField(auto_now_add=True)
     ordered = models.BooleanField(default=False, blank=True, null=True)
@@ -81,14 +82,9 @@ class OrderService(models.Model):
     def service_user_confirmation(self):
         self.completed_by_user = True
 
-        if self.completed_by_provider:
-            self.completed = True
-
     def service_admin_confirmation(self):
         self.completed_by_provider = True
-
-        if self.completed_by_user:
-            self.completed = True
+        self.completed = True
 
 
 

@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ request.user }} profile{% endblock title %}
 
-</body>
-</html>
+{% block body %}
+
+ <br><br><br>
+    <div class="detail">
+        <div class="image">
+          <img src="{{ profile.profile_pic.url }}" alt="" class="img-rounded">
+        </div>
+        <div class="box">
+            <span>{{ profile.person.username }}</span>
+            <br>
+            <p>
+                {{ profile.address }}. {{ profile.state }}. {{ profile.city }}
+            </p>
+            {% if profile.is_a_provider %}
+            <p>
+                <b>PROVIDER</b>
+            </p>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <div class="spread">
+        <a href="{% url 'user:service' %}">
+            VIEW YOUR SERVICES
+        </a>
+
+    </div>
+
+
+{% endblock body %}

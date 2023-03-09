@@ -9,27 +9,27 @@ from Service.models import OrderService
 
 # Create your views here.
 
-class AdminRenderedView(View, LoginRequiredMixin):
+class ServiceView(View, LoginRequiredMixin):
     def get(self, *args, **kwargs):
-        orders = RenderedServices.objects.filter(
+        rendered = RenderedServices.objects.filter(
             admin=self.request.user,
-            completed = True,
         )
-        context = {
-            'orders': orders
-        }
-        return render(self.request, 'user/renderedservices.html', context)
-
-class UserCompletedView(View, LoginRequiredMixin):
-    def get(self, *args, **kwargs):
-        orders = OrderService.objects.filter(
+        ordered = RenderedServices.objects.filter(
             user=self.request.user,
-            completed = True,
+        )
+        user_actv = OrderService.objects.filter(
+            user=self.request.user,
+        )
+        admin_actv = OrderService.objects.filter(
+            admin=self.request.user,
         )
         context = {
-            'orders': orders
+            'rendered':rendered,
+            'ordered':ordered,
+            'user_actv':user_actv,
+            'admin_actv':admin_actv,
         }
-        return render(self.request, 'user/completedservices.html', context)
+        return render(self.request, 'user/services.html', context)
 
 
 # View function for creating a service
@@ -54,8 +54,9 @@ def CreateProfile(request):
 class ProfileView(View, LoginRequiredMixin):
     def get(self, *args, **kwargs):
         try:
-            profile = UserProfile.objects.filter(
-                person=self.request.user,
+            person = self.request.user
+            profile = UserProfile.objects.get(
+                person=person,
             )
             context = {
                 'profile': profile
@@ -98,6 +99,7 @@ def onboarduser(request):
         'form': form
     }
     return render(request, 'user/onboard.html', context)
+
 
 
 def handler404(request, exception):

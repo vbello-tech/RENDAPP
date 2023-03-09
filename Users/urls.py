@@ -4,8 +4,7 @@ from .views import *
 app_name = "user"
 
 urlpatterns = [
-    path('services-rendered/', AdminRenderedView.as_view(), name="rendered"),
-    path('services-completed/', UserCompletedView.as_view(), name="completed"),
+    path('services-rendered/', ServiceView.as_view(), name="service"),
     path('add-profile/', CreateProfile, name="addprofile"),
     path('profile', ProfileView.as_view(), name="profile"),
     path('artisans/onboarding/', onboarduser, name="onboard"),
