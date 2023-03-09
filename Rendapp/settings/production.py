@@ -6,6 +6,7 @@ from .base import *
 PASSWORD = config('PASSWORD')
 HOST = config('HOST')
 
+"""
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -24,7 +25,7 @@ DATABASES = {
         default=config('DATABASE_URL')
     )
 }
-"""
+
 
 
 
