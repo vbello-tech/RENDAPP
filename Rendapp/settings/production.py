@@ -3,14 +3,16 @@ from .base import *
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+PASSWORD = config('PASSWORD')
+HOST = config('HOST')
 
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
        'NAME': 'railway',
        'USER': 'postgres',
-       'PASSWORD': '7nv31eSha6NM3ifBtIBm',
-       'HOST': 'containers-us-west-35.railway.app',
+       'PASSWORD': PASSWORD,
+       'HOST': HOST,
        'PORT': '5585',
    }
 }
