@@ -48,8 +48,8 @@ def location(request):
     os_version = request.user_agent.os.version_string"""
 
     g = GeoIP2()
-    location = g.city(ip)
-    #location = g.city("192.168.148.220")
+    #location = g.city(ip)
+    location = g.city("192.168.148.238")
     location_country = location["country_name"]
     location_city = location["city"]
     context = {
