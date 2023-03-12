@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'anymail',
     'phonenumber_field',
     'crispy_forms',
+    'geoip2',
 
     # allauth
     'allauth',
@@ -197,6 +198,9 @@ PHONENUMBER_DEFAULT_REGION = 'NG'
 account_sid = config('account_sid')
 auth_token = config('auth_token')
 my_number = config('my_number')
+
+#geoip location
+GEOIP_PATH =os.path.join('geoip')
 
 #abstract api location
 api_key = "e6f28958036544acb71d7325038cb2ae"

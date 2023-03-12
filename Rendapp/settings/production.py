@@ -6,6 +6,10 @@ from .base import *
 PASSWORD = config('PASSWORD')
 HOST = config('HOST')
 
+CSRF_TRUSTED_ORIGINS = ['https://rendapp.up.railway.app']
+
+CORS_ORIGIN_ALLOW_ALL = True
+
 """
 DATABASES = {
    'default': {
