@@ -33,6 +33,7 @@ class ServiceView(View, LoginRequiredMixin):
 
 
 # View function for creating a service
+
 def CreateProfile(request):
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES)
