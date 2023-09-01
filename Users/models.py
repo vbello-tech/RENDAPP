@@ -29,12 +29,13 @@ class RenderedServices(models.Model):
 # details of all users
 class UserProfile(models.Model):
     person = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="profile", on_delete=models.CASCADE,  blank=True, null=True)
-    profile_pic = models.ImageField(blank=True, upload_to="Profile/")
+    profile_pic = models.FileField(blank=True, upload_to="Profile/")
     phone_number = PhoneNumberField(blank=True, null=True)
     state = models.CharField(max_length=30, blank=True, null=True)
     city = models.CharField(max_length=30, blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
     is_a_provider = models.BooleanField(default=False, blank=True, null=True)
+    has_profile = models.BooleanField(default=False, blank=True, null=True)
 
     def __str__(self):
         return self.person.username

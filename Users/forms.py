@@ -2,19 +2,36 @@ from django import forms
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from phonenumber_field.formfields import PhoneNumberField
+from phonenumber_field.widgets import PhoneNumberInternationalFallbackWidget, PhoneNumberPrefixWidget
 
-
-class ProfileForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = (
-            'profile_pic',
-            'phone_number',
-            'state',
-            'city',
-            'address',
-            'is_a_provider',
+class ProfileForm(forms.Form):
+        #profile_image = forms.FileField(required=False, widget=forms.FileInput(attrs={
+         #   'class': 'form-control',
+          #  'placeholder': 'INPUT ADDRESS',
+          #  'aria-describedby': 'basic-addon2'
+        #}))
+        phone = PhoneNumberField(required=False, widget=PhoneNumberPrefixWidget( country_choices=[
+                 ("CA", "Canada"),
+                 ("NG", "Nigeria"),
+                 ('US', 'United States of America')
+            ],
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'INPUT PHONE NUMBER',
+                'aria-describedby': 'basic-addon2'
+            })
         )
+        state = forms.CharField(required=False, widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'INPUT YOUR STATE',
+            'aria-describedby': 'basic-addon2'
+        }))
+        city = forms.CharField(required=False, widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'INPUT YOUR CITY',
+            'aria-describedby': 'basic-addon2'
+        }))
 
 class NewUSerForm(UserCreationForm):
     email = forms.EmailField(required=True)

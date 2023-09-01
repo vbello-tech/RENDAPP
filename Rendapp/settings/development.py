@@ -9,21 +9,11 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-"""
-PASSWORD = config('PASSWORD')
-HOST = config('HOST')
 
+#mail
+EMAIL_HOST = "localhost"
+EMAIL_PORT = 1025
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'railway',
-       'USER': 'postgres',
-       'PASSWORD': PASSWORD,
-       'HOST': HOST,
-       'PORT': '5585',
-   }
-}
-"""
 
 

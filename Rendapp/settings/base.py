@@ -149,7 +149,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -176,17 +175,6 @@ LOGOUT_URL = "account_logout"
 LOGIN_REDIRECT_URL = "service:home"
 LOGOUT_REDIRECT_URL = "service:home"
 PASSWORD_RESET_TIMEOUT = 360
-
-MAILJET_API_KEY = config('MAILJET_API_KEY')
-MAILJET_SECRET_KEY = config('MAILJET_SECRET_KEY')
-
-ANYMAIL = {
-    "MAILJET_API_KEY": MAILJET_API_KEY,
-    "MAILJET_SECRET_KEY": MAILJET_SECRET_KEY,
-}
-EMAIL_BACKEND = "anymail.backends.mailjet.EmailBackend"
-DEFAULT_FROM_EMAIL = 'vbellotech@gmail.com'
-SERVER_EMAIL = 'vbellotech@gmail.com'
 
 #phonefield
 PHONENUMBER_DB_FORMAT = 'E164'

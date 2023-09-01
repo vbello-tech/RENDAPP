@@ -113,11 +113,15 @@ def client_confirm_sms(request, called_service):
 
 class HomeView(View):
     def get(self, * args, **kwargs):
-        category = Category.objects.all()[:6]
-        context = {
-            'categories': category,
-        }
-        return render(self.request, 'home.html', context)
+        try:
+            if UserProfile.objects.get(person=self.request.user, has_profile=True):
+                category = Category.objects.all()[:6]
+                context = {
+                    'categories': category,
+                }
+                return render(self.request, 'home.html', context)
+        except ObjectDoesNotExist:
+            return redirect('user:addprofile')
 
 # View function for creating a service
 @login_required

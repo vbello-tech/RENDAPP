@@ -15,10 +15,10 @@
                 <li><a href="{% url 'service:search' %}" class="nav-links">SEARCH</a></li>
                 <li><a href="{% url 'service:addservice' %}" class="nav-links">ADD SERVICE</a></li>
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'user:profile' %}" class="nav-links nav-links-btn">DASHBOARD</a></li>
+                <li><a href="{% url 'account_logout' %}" class="nav-links nav-links-btn">LOGOUT</a></li>
+                <li><a href="{% url 'user:profile' %}" class="nav-links nav-links-btn">{{ request.user }}</a></li>
                 {% else %}
                 <li><a href="{% url 'account_login' %}" class="nav-links nav-links-btn">LOGIN</a></li>
-
                 {% endif %}
             </ul>
         </nav>
