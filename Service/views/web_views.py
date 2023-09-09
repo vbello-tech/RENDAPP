@@ -3,8 +3,8 @@ from django.views.generic import *
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from .models import *
-from .forms import *
+from Service.models import *
+from Service.forms import *
 from django.utils import timezone
 import random, string, requests, json
 from Rendapp.settings import base
@@ -110,18 +110,6 @@ def client_confirm_sms(request, called_service):
         from_='+12569608957',
         to= phone
     )
-
-class HomeView(View):
-    def get(self, * args, **kwargs):
-        try:
-            if UserProfile.objects.get(person=self.request.user, has_profile=True):
-                category = Category.objects.all()[:6]
-                context = {
-                    'categories': category,
-                }
-                return render(self.request, 'home.html', context)
-        except ObjectDoesNotExist:
-            return redirect('user:addprofile')
 
 # View function for creating a service
 @login_required
