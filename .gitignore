@@ -7,3 +7,8 @@ media
 staticfiles
 
 data.txt
+
+
+__pycache__/
+
+.DS_Store
