@@ -35,7 +35,7 @@ class ServiceView(View, LoginRequiredMixin):
 # View function for creating a service
 class CreateProfileView(View):
     def get(self, *args, **kwargs):
-        form = ProfileForm(self.request.POST, self.request.FILES)
+        form = ProfileForm()
         context = {
             'form': form
         }
@@ -44,17 +44,12 @@ class CreateProfileView(View):
     def post(self, *args, **kwargs):
         try:
             user = UserProfile.objects.get(person=self.request.user)
-            form = ProfileForm(self.request.POST or None)
-            if form.is_valid():
-                #profile_image = form.cleaned_data.get('profile_image')
-                phone = form.cleaned_data.get('phone')
-                state = form.cleaned_data.get('state')
-                city = form.cleaned_data.get('city')
-                #user.profile_pic = profile_image,
-                user.phone = phone,
-                user.state = state,
-                user.city = city
-                user.save()
+            if self.request.method == "POST":
+                form = ProfileForm(self.request.POST, self.request.FILES, instance=user)
+                if form.is_valid():
+                    profile = form.save(commit=False)
+                    profile.has_profile = True
+                    profile.save()
                 return redirect('user:profile')
             else:
                 return redirect('user:addprofile')
@@ -67,6 +62,7 @@ class ProfileView(View, LoginRequiredMixin):
             person = self.request.user
             profile = UserProfile.objects.get(
                 person=person,
+                has_profile=True,
             )
             context = {
                 'profile': profile

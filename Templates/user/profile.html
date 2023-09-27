@@ -7,13 +7,15 @@
  <br><br><br>
     <div class="detail">
         <div class="image">
-          <img src="{{ profile.profile_pic.url }}" alt="" class="img-rounded">
+            {% if profile.profile_pic %}
+            <img src="{{ profile.profile_pic.url }}" alt="" class="img-rounded">
+            {% endif %}
         </div>
         <div class="box">
             <span>{{ profile.person.username }}</span>
             <br>
             <p>
-                {{ profile.address }}. {{ profile.state }}. {{ profile.city }}
+                 {{ profile.state }} <br> {{ profile.city }}
             </p>
             {% if profile.is_a_provider %}
             <p>
@@ -24,12 +26,13 @@
         </div>
     </div>
 
+{% if profile.is_a_provider %}
     <div class="spread">
         <a href="{% url 'user:service' %}">
             VIEW YOUR SERVICES
         </a>
 
     </div>
-
+{% endif %}
 
 {% endblock body %}

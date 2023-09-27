@@ -33,7 +33,6 @@ class UserProfile(models.Model):
     phone_number = PhoneNumberField(blank=True, null=True)
     state = models.CharField(max_length=30, blank=True, null=True)
     city = models.CharField(max_length=30, blank=True, null=True)
-    address = models.CharField(max_length=100, blank=True, null=True)
     is_a_provider = models.BooleanField(default=False, blank=True, null=True)
     has_profile = models.BooleanField(default=False, blank=True, null=True)
 

@@ -111,6 +111,14 @@ def client_confirm_sms(request, called_service):
         to= phone
     )
 
+class HomeView(View):
+    def get(self, * args, **kwargs):
+            category = Category.objects.all()[:6]
+            context = {
+                'categories': category,
+            }
+            return render(self.request, 'home.html', context)
+
 # View function for creating a service
 @login_required
 def CreateService(request):
