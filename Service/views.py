@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import *
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from Service.models import *
@@ -10,12 +10,12 @@ import random, string, requests, json
 from Rendapp.settings import base
 from Users.models import *
 from django.contrib import messages
-from django.http import JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from twilio.rest import Client
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.contrib.gis.geoip2 import GeoIP2
+
 # Create your views here.
 
 tw_sid = base.account_sid
@@ -49,16 +49,16 @@ def location(request):
 
     g = GeoIP2()
     location = g.city(ip)
-    #location = g.city("192.168.148.238")
+    # location = g.city("192.168.148.238")
     location_country = location["country_name"]
     location_city = location["city"]
     context = {
         "ip": ip,
-        #"device_type": device_type,
-        #"browser_type": browser_type,
-        #"browser_version": browser_version,
-        #"os_type": os_type,
-        #"os_version": os_version,
+        # "device_type": device_type,
+        # "browser_type": browser_type,
+        # "browser_version": browser_version,
+        # "os_type": os_type,
+        # "os_version": os_version,
         "location_country": location_country,
         "location_city": location_city
     }
@@ -70,7 +70,7 @@ def create_ref_code():
 
 
 def order_sms(request, called_service):
-    sender = UserProfile.objects.get(person =called_service.admin)
+    sender = UserProfile.objects.get(person=called_service.admin)
     sennum = sender.phone_number
     phone = str(sennum)
     account_sid = tw_sid
@@ -80,11 +80,12 @@ def order_sms(request, called_service):
     message = client.messages.create(
         body=f"Hi {called_service.name} admin, You have a new service order for your {called_service.category} service on rendapp. Kindly accept the order if you are interested ",
         from_='+12569608957',
-        to= phone
+        to=phone
     )
 
+
 def admin_confirm_sms(request, called_service):
-    sender = UserProfile.objects.get(person =called_service.user)
+    sender = UserProfile.objects.get(person=called_service.user)
     sennum = sender.phone_number
     phone = str(sennum)
     account_sid = tw_sid
@@ -94,11 +95,12 @@ def admin_confirm_sms(request, called_service):
     message = client.messages.create(
         body=f"Hi {called_service.order_service} admin, Your client has sucessfully closed the service you rendered with code {called_service.ref_code}. Kindly close this service from your end to receive your payment within the next 24 hours",
         from_='+12569608957',
-        to= phone
+        to=phone
     )
 
+
 def client_confirm_sms(request, called_service):
-    sender = UserProfile.objects.get(person =called_service.order_service.admin)
+    sender = UserProfile.objects.get(person=called_service.order_service.admin)
     sennum = sender.phone_number
     phone = str(sennum)
     account_sid = tw_sid
@@ -108,16 +110,18 @@ def client_confirm_sms(request, called_service):
     message = client.messages.create(
         body=f"Hi {request.user}, A provider has sucessfully closed the service you ordered with code {called_service.ref_code}. Kindly close this service from your end to enable your payment to provider within the next 24 hours",
         from_='+12569608957',
-        to= phone
+        to=phone
     )
 
+
 class HomeView(View):
-    def get(self, * args, **kwargs):
-            category = Category.objects.all()[:6]
-            context = {
-                'categories': category,
-            }
-            return render(self.request, 'home.html', context)
+    def get(self, *args, **kwargs):
+        category = Category.objects.all()[:6]
+        context = {
+            'categories': category,
+        }
+        return render(self.request, 'home.html', context)
+
 
 # View function for creating a service
 @login_required
@@ -151,16 +155,17 @@ class ServiceListView(ListView):
 
 def servicedetail(request, pk, name):
     service = Service.objects.get(pk=pk, name=name)
-    related_service = Service.objects.filter( category=service.category)
+    related_service = Service.objects.filter(category=service.category)
     related_list = [][:4]
     for item in related_service:
         if item.pk != service.pk:
             related_list.append(item)
     context = {
         'service': service,
-        'related_list':related_list,
+        'related_list': related_list,
     }
     return render(request, 'service/servicedetail.html', context)
+
 
 class CategoryListView(ListView):
     model = Category
@@ -170,6 +175,7 @@ class CategoryListView(ListView):
     def get_queryset(self):
         return Category.objects.all()
 
+
 def category(request, category):
     categories = Service.objects.filter(category=category)
 
@@ -178,6 +184,7 @@ def category(request, category):
         'category_name': category,
     }
     return render(request, 'service/category.html', context)
+
 
 # View function to order a service
 @login_required
@@ -198,7 +205,7 @@ def call_service(request, pk):
         order_service, created = OrderService.objects.get_or_create(
             order_service=called_service,
             user=request.user,
-            admin = called_service.admin,
+            admin=called_service.admin,
             order_service_date=timezone.now(),
             ordered=True,
             ref_code=create_ref_code()
@@ -222,6 +229,7 @@ def accept_service_call(request, pk):
         messages.info(request, f"YOU ACCEPTED A NEW SERVICE ORDER. IT WILL BE ADDED TO YOUR ACTIVE  SERVICES ")
         return redirect('service:home')
 
+
 @login_required
 def decline_service_call(request, pk):
     logged_in_user = request.user
@@ -236,6 +244,7 @@ def decline_service_call(request, pk):
         messages.info(request, f"YOU DECLINED A SERVICE ORDER ")
         return redirect('service:home')
 
+
 @login_required
 def service_user_confirmation(request, pk, ref):
     logged_in_user = request.user
@@ -244,15 +253,17 @@ def service_user_confirmation(request, pk, ref):
         pk=pk,
         ref=ref,
         ordered=True,
-        active =True,
+        active=True,
     )
     if logged_in_user == ordered_service.user:
         ordered_service.service_user_confirmation()
         ordered_service.save()
         # todo, send a message to the provider that client has checked out the service
         admin_confirm_sms(ordered_service)
-        messages.info(request, f"YOU HAVE SUCESSFULLY CLOSED {ordered_service.name} SERVICE. THE PROVIDER WILL BE NOTIFIED")
+        messages.info(request,
+                      f"YOU HAVE SUCESSFULLY CLOSED {ordered_service.name} SERVICE. THE PROVIDER WILL BE NOTIFIED")
         return redirect('service:home')
+
 
 @login_required
 def service_admin_confirmation(request, pk, ref):
@@ -268,27 +279,29 @@ def service_admin_confirmation(request, pk, ref):
         ordered_service.service_admin_confirmation()
         ordered_service.save()
         service, created = RenderedServices.objects.get_or_create(
-            admin = logged_in_user,
-            user = ordered_service.user,
-            ordered_service = ordered_service.order_service,
-            service_ordered_date = ordered_service.order_service_date,
-            completed = ordered_service.completed,
-            ref_code = ordered_service.ref_code,
+            admin=logged_in_user,
+            user=ordered_service.user,
+            ordered_service=ordered_service.order_service,
+            service_ordered_date=ordered_service.order_service_date,
+            completed=ordered_service.completed,
+            ref_code=ordered_service.ref_code,
         )
         # todo, send a message to the client that provider has checked out the service
         if ordered_service.completed:
             messages.info(request, f"YOU HAVE SUCESSFULLY CLOSED {ordered_service.name} SERVICE.")
         else:
             client_confirm_sms(ordered_service)
-            messages.info(request, f"YOU HAVE SUCESSFULLY CLOSED {ordered_service.name} SERVICE. YOUR CLIENT WILL BE NOTIFIED")
+            messages.info(request,
+                          f"YOU HAVE SUCESSFULLY CLOSED {ordered_service.name} SERVICE. YOUR CLIENT WILL BE NOTIFIED")
         return redirect('service:home')
 
 
 class SearchView(TemplateView):
     template_name = 'service/search.html'
 
+
 def search_result(request):
-    if request.method =="POST":
+    if request.method == "POST":
         service = request.POST['service']
         state = request.POST['state']
         city = request.POST['city']
@@ -305,8 +318,10 @@ def search_result(request):
         }
         return render(request, 'service/searchresult.html', context)
 
+
 class AboutView(TemplateView):
     template_name = 'service/about.html'
+
 
 class ContactView(View):
     def get(self, *args, **kwargs):
@@ -314,15 +329,16 @@ class ContactView(View):
         context = {
             'form': form,
         }
-        return render(self.request,'service/contact.html', context)
-    def post(self,*args, **kwargs):
+        return render(self.request, 'service/contact.html', context)
+
+    def post(self, *args, **kwargs):
         form = ContactForm(self.request.POST or None)
         if form.is_valid():
             EMAIL = form.cleaned_data.get('EMAIL')
             MESSAGE = form.cleaned_data.get('MESSAGE')
             NAME = form.cleaned_data.get('NAME')
 
-            print(EMAIL, NAME, MESSAGE )
+            print(EMAIL, NAME, MESSAGE)
             send_mail(
                 NAME,
                 MESSAGE,
@@ -331,11 +347,3 @@ class ContactView(View):
                 fail_silently=False,
             )
             return redirect('service:home')
-
-
-
-
-
-
-
-
